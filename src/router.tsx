@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import { GlobalLayout } from './components/GlobalLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
-// NOTE: Re-reouting to servers with the idea that there would be additional pages later.
+// NOTE: Re-reouting to /servers with the idea that there would be additional pages later.
 export const router = createBrowserRouter([
   {
     path: '/',

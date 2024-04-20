@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -15,12 +17,24 @@ const Login = () => {
   };
 
   return (
-    <div className=" bg-blue-200 flex flex-col p-4">
-      <label htmlFor="username">Username</label>
-      <input type="text" id="username" onChange={(e) => setUsername(e.target.value)} />
-      <label htmlFor="username">Password</label>
-      <input type="text" id="password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
+    <div className="flex flex-col shrink w-96 m-4 p-4 bg-slate-50	rounded ">
+      <Input
+        id="username"
+        label="Username"
+        placeholder="Enter username here..."
+        type="text"
+        onChange={(e) => setUsername(e.target.value)}
+        className="mb-2"
+      />
+      <Input
+        id="password"
+        label="Password"
+        placeholder="Enter password here..."
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        className="mb-10"
+      />
+      <Button onClick={handleLogin}>Sign in</Button>
     </div>
   );
 };
