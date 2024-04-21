@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import ServerList from './pages/ServerList';
+import Servers from './pages/Servers/Servers';
 import Login from './pages/Login/Login';
 import { GlobalLayout } from './components/GlobalLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'servers',
-            element: <ServerList />,
+            element: <Servers />,
           },
         ],
       },

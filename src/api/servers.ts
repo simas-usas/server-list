@@ -1,6 +1,6 @@
 import { GetServersResponse } from '../types';
 
-const fetchServers = async (): Promise<GetServersResponse> => {
+export const fetchServers = async (): Promise<GetServersResponse> => {
   const token = localStorage.getItem('token');
   const res = await fetch('https://playground.tesonet.lt/v1/servers', {
     method: 'GET',

@@ -8,7 +8,7 @@ describe('Login', () => {
     vi.clearAllMocks();
   });
 
-  it('renders Login component', () => {
+  it('renders Login page', () => {
     render(
       <MemoryRouter>
         <Login />
@@ -43,7 +43,7 @@ describe('Login', () => {
     expect(screen.queryByText('Please enter a valid username.')).not.toBeInTheDocument();
   });
 
-  it('calls login endpoint', () => {
+  it('calls token endpoint', () => {
     const mockFetch = vi.fn();
     global.fetch = mockFetch;
 
