@@ -9,7 +9,7 @@ export const GlobalLayout = () => {
   const { clearToken } = useAuthContext();
 
   return (
-    <div className="bg-default bg-cover">
+    <div className="flex flex-col min-h-screen bg-default bg-cover">
       {pathname !== '/login' && (
         <Header>
           <Logo className="fill-secondary" />
@@ -18,8 +18,10 @@ export const GlobalLayout = () => {
           </Button>
         </Header>
       )}
-      <div className="flex items-center justify-center h-screen w-screen overflow-x-auto">
-        <Outlet />
+      <div className="flex flex-grow items-center justify-center m-4">
+        <main>
+          <Outlet />
+        </main>
       </div>
     </div>
   );
