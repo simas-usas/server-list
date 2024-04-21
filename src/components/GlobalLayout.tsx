@@ -18,7 +18,7 @@ export const GlobalLayout = () => {
           </Button>
         </Header>
       )}
-      <div className="flex flex-grow items-center justify-center m-4">
+      <div className="flex flex-grow items-center justify-center m-2">
         <main>
           <Outlet />
         </main>

@@ -49,7 +49,7 @@ const Table = ({ data }: Props) => {
     <div>
       <table className="bg-secondary mb-2">
         <TableHead headers={headers} sort={sort} onSort={onSort} />
-        <TableBody rows={rows} pagination={pagination} />
+        <TableBody rows={rows} pagination={pagination} headerLegnth={headers.length} />
       </table>
       <TablePagination pagination={pagination} rowsLength={rows.length} onPageChange={onPageChange} />
     </div>
