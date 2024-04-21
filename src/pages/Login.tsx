@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { twMerge } from 'tailwind-merge';
+import Spinner from '../components/Spinner';
 
 const Login = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
 
-  const { getToken } = useAuthContext();
+  const { getToken, isLoading } = useAuthContext();
   const navigate = useNavigate();
 
   const onLoginClick = async () => {
@@ -35,6 +36,8 @@ const Login = () => {
       setError(true);
     }
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="flex flex-col shrink w-96 m-4 p-4 bg-slate-50	rounded">

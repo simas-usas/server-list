@@ -37,6 +37,7 @@ const Table = ({ data }: Props) => {
       });
       setSort({ sortBy: header, order: sortOrder });
       setTableData(sortedArray);
+      setPagination((prev) => ({ ...prev, page: 0 }));
     },
     [tableData, sort],
   );
@@ -49,7 +50,7 @@ const Table = ({ data }: Props) => {
     <div>
       <table className="bg-secondary mb-2">
         <TableHead headers={headers} sort={sort} onSort={onSort} />
-        <TableBody rows={rows} pagination={pagination} headerLegnth={headers.length} />
+        <TableBody rows={rows} pagination={pagination} headers={headers} />
       </table>
       <TablePagination pagination={pagination} rowsLength={rows.length} onPageChange={onPageChange} />
     </div>

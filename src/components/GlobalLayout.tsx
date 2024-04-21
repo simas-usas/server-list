@@ -1,8 +1,10 @@
 import { Outlet, useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
 import Header from './Header';
 import { useAuthContext } from '../contexts/AuthContext';
 import Button from './Button';
 import { Logo } from '../assets';
+import Spinner from './Spinner';
 
 export const GlobalLayout = () => {
   const { pathname } = useLocation();
@@ -20,7 +22,9 @@ export const GlobalLayout = () => {
       )}
       <div className="flex flex-grow items-center justify-center m-2">
         <main>
-          <Outlet />
+          <Suspense fallback={<Spinner />}>
+            <Outlet />
+          </Suspense>
         </main>
       </div>
     </div>

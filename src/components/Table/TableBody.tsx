@@ -6,10 +6,10 @@ interface Props {
     page: number;
     count: number;
   };
-  headerLegnth: number;
+  headers: string[];
 }
 
-const TableBody = ({ rows, pagination: { page, count }, headerLegnth }: Props) => (
+const TableBody = ({ rows, pagination: { page, count }, headers }: Props) => (
   <tbody>
     {rows.slice(page, page + count).map((row, index) => (
       <tr key={index}>
@@ -18,7 +18,7 @@ const TableBody = ({ rows, pagination: { page, count }, headerLegnth }: Props) =
             key={index}
             className={twMerge(
               'px-2 lg:px-4 py-2 min-w-44 lg:min-w-56 border border-gray-300',
-              index === headerLegnth - 1 && 'text-right',
+              index === headers.length - 1 && 'text-right',
             )}
           >
             {cell}

@@ -3,3 +3,4 @@ export { default as ArrowLeft } from '../assets/arrow-left.svg?react';
 export { default as ArrowRight } from '../assets/arrow-right.svg?react';
 export { default as Logo } from '../assets/logo.svg?react';
 export { default as BackgroundImage } from '../assets/background-image.svg?react';
+export { default as Spinner } from '../assets/spinner.svg?react';

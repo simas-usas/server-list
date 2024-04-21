@@ -1,15 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getServersQuery } from '../api/servers';
 import Table from '../components/Table/Table';
 
 const ServerList = () => {
-  const { data } = useQuery(getServersQuery());
+  const { data } = useSuspenseQuery(getServersQuery());
 
-  return (
-    <div>
-      <Table data={data} />
-    </div>
-  );
+  return <Table data={data} />;
 };
 
 export default ServerList;
