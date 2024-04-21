@@ -6,13 +6,16 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        nunito: ["Nunito", "sans-serif"]
+      },
       colors: {
         primary: "#484d73",
         secondary: "#fcfcfd",
       },
       backgroundImage: {
-        "default": "url('./src/assets/background-image.svg')"
-      }
+        default: "url('./src/assets/background-image.svg')"
+      },
     },
   },
   plugins: [],

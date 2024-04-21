@@ -11,7 +11,7 @@ export const GlobalLayout = () => {
   const { clearToken } = useAuthContext();
 
   return (
-    <div className="flex flex-col min-h-screen bg-default bg-cover">
+    <div className="flex flex-col min-h-screen font-nunito bg-default bg-cover">
       {pathname !== '/login' && (
         <Header>
           <Logo className="fill-secondary" />
