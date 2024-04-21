@@ -11,7 +11,7 @@ export default {
         secondary: "#fcfcfd",
       },
       backgroundImage: {
-        "default": "url('./public/background-image.svg')"
+        "default": "url('./src/assets/background-image.svg')"
       }
     },
   },

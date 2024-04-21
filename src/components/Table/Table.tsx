@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
+import TableHead from './TableHead';
+import TableBody from './TableBody';
+import TablePagination from './TablePagination';
 
 type TableData = { [key: string]: number | string }[];
 
@@ -7,12 +10,11 @@ interface Props {
 }
 
 const Table = ({ data }: Props) => {
-  const [page, setPage] = useState(0);
-  const [count, setCount] = useState(15);
   const [tableData, setTableData] = useState<TableData>([]);
 
   const headers = tableData[0] && Object.keys(tableData[0]);
   const rows = tableData.map((item) => Object.values(item));
+  const [pagination, setPagination] = useState<{ page: number; count: number }>({ page: 0, count: 15 });
   const [sort, setSort] = useState<{ sortBy: string | null; order: string | null }>({ sortBy: null, order: null });
 
   useEffect(() => {
@@ -40,45 +42,16 @@ const Table = ({ data }: Props) => {
   );
 
   const onPageChange = (increment: number) => {
-    setPage((prevPage) => prevPage + increment);
+    setPagination((prev) => ({ ...prev, page: prev.page + increment }));
   };
 
   return (
-    <div className="bg-slate-50">
-      <table>
-        <thead>
-          <tr className="text-left">
-            {headers?.map((header) => (
-              <th
-                key={header}
-                className="px-4 py-2 bg-primary text-white border border-gray-300 capitalize cursor-pointer"
-                onClick={() => onSort(header)}
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.slice(page, page + count).map((row, index) => (
-            <tr key={index}>
-              {row.map((cell, index) => (
-                <td key={index} className="px-4 py-2 min-w-56 border border-gray-300">
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+    <div>
+      <table className="bg-secondary mb-2">
+        <TableHead headers={headers} sort={sort} onSort={onSort} />
+        <TableBody rows={rows} pagination={pagination} />
       </table>
-      <div className="flex w-full justify-center">
-        <button onClick={() => onPageChange(-count)} disabled={page === 0}>
-          Prev
-        </button>
-        <button onClick={() => onPageChange(count)} disabled={page + 1 * count >= rows.length}>
-          Next
-        </button>
-      </div>
+      <TablePagination pagination={pagination} rowsLength={rows.length} onPageChange={onPageChange} />
     </div>
   );
 };

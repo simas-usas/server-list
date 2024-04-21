@@ -5,14 +5,15 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
 }
 
-const Button = ({ children, variant = 'primary', ...props }: Props) => {
-  const backgroundColor = `bg-${variant}`;
-  const textColor = variant === 'primary' ? 'text-white' : 'text-black';
-  return (
-    <button className={`${backgroundColor} ${textColor} py-2 px-4 rounded`} {...props}>
-      {children}
-    </button>
-  );
+const classNames = {
+  primary: 'bg-primary text-white',
+  secondary: 'bg-secondary text-black',
 };
+
+const Button = ({ children, variant = 'primary', ...props }: Props) => (
+  <button className={`${classNames[variant]} py-2 px-4 rounded`} {...props}>
+    {children}
+  </button>
+);
 
 export default Button;
