@@ -17,6 +17,7 @@
     /* Linting */
     "strict": true,
     "types": [
+      "node",
       "vite/client",
       "vite-plugin-svgr/client",
       "vitest/globals"

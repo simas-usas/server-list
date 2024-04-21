@@ -1,6 +1,6 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import ServerList from './pages/ServerList';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import { GlobalLayout } from './components/GlobalLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
 

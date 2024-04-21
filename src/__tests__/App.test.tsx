@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
-  it('renders the Login component by default', () => {
+  it('renders Login component by default', () => {
     const queryClient = new QueryClient();
 
     render(
