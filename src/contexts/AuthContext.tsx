@@ -8,14 +8,14 @@ type AuthContext = {
   token?: string | null;
   getToken: (props: AuthCredentials) => Promise<void> | undefined;
   clearToken: () => Promise<void> | undefined;
-  isLoading: boolean;
+  isPending: boolean;
 };
 
 const AuthContext = createContext<AuthContext>({
   token: 'test',
   clearToken: () => undefined,
   getToken: () => undefined,
-  isLoading: false,
+  isPending: false,
 });
 
 export const useAuthContext = () => {
@@ -24,16 +24,11 @@ export const useAuthContext = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(getAuthToken());
-  const [isLoading, setIsLoading] = useState(false);
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: fetchToken,
-    onMutate: () => {
-      setIsLoading(true);
-    },
     onSuccess: (data) => {
       document.cookie = `token=${data.token}`;
       setToken(data.token);
-      setIsLoading(false);
     },
   });
 
@@ -52,7 +47,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         token,
         getToken,
         clearToken,
-        isLoading,
+        isPending,
       }}
     >
       {children}

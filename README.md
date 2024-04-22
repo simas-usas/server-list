@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Server List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple React project made using React, TypeScript and Vite.
 
-Currently, two official plugins are available:
+Features two pages: 
+* Login form
+* Table displaying list of servers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Launch the project locally using the following command:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Tools
+### Vite
+
+Project is built using Vite. Provides the project with a easy to use config and faster build times.
+
+### React Context
+
+Used for authentication. Created `AuthContext` that stores the token provided from the API. Components wrapped with `AuthProvider` have access to the token and any related methods.
+
+Tokens are stored as cookies instead of localStorage due to safety reasons (less vulnerability to XSS attacks).
+
+### React Query
+
+Used for easier data fetching/caching.
+Created `useMutation` hook for fetching the token that is later managed by `AuthContext`.
+Created `useQuery` hook for fetching the server list. This is called immediately within the `Servers` component, due to it only being necessary for that scope.
+
+Set `refetchOnWindowFocus` by default to false in order to not overload the application with calls to the API.
+
+### React Router
+
+Basic router setup that initially directs the user to the `/login`. Within `ProtectedRoute`, we check for a token. If available, the router navigates us to /`/servers`. It's also used as our index path.
+
+### Vitest + React Testing Library
+
+While Jest is the more established testing framework, it's simply easier to integrate Vitest with Vite. Vitest combined with React Testing Library provides developers with more than enough necessary tools to test the user experience properly.
+
+Test can run using the following command:
+
+```
+npm run test
+```
+
+## Further improvements
+
+* Add an option for the user to choose how many pages are displayed.
+* Add a page not found screen.
+* Refactor Table for further customisability. Would prefer the developer to configure headers manually.

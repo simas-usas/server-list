@@ -11,10 +11,5 @@ export const fetchToken = async ({ username, password }: AuthCredentials): Promi
       password,
     }),
   });
-
-  if (!res.ok) {
-    throw new Error('Token could not be provided.');
-  }
-
   return res.json();
 };

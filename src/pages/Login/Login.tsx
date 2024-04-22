@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
 
-  const { getToken, isLoading } = useAuthContext();
+  const { getToken, isPending } = useAuthContext();
   const navigate = useNavigate();
 
   const onLoginClick = async () => {
@@ -35,7 +35,7 @@ const Login = () => {
     }
   };
 
-  if (isLoading) return <Spinner />;
+  if (isPending) return <Spinner />;
 
   return (
     <div className="flex flex-col shrink w-96 m-4 p-4 bg-slate-50	rounded">

@@ -10,11 +10,6 @@ const fetchServers = async (): Promise<GetServersResponse> => {
       Authorization: `Bearer ${token}`,
     },
   });
-
-  if (!res.ok) {
-    throw new Error('Servers could not be provided.');
-  }
-
   return res.json();
 };
 
