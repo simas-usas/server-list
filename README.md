@@ -33,7 +33,7 @@ Set `refetchOnWindowFocus` by default to false in order to not overload the appl
 
 ### React Router
 
-Basic router setup that initially directs the user to the `/login`. Within `ProtectedRoute`, we check for a token. If available, the router navigates us to /`/servers`. It's also used as our index path.
+Basic router setup that initially directs the user to the `/login`. Within `ProtectedRoute`, we check for a token. If available, the router navigates us to `/servers`. It's also used as our index path.
 
 ### Vitest + React Testing Library
 
