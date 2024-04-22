@@ -1,7 +1,7 @@
 import { AuthCredentials, GetTokenResponse } from '#types';
 
 export const fetchToken = async ({ username, password }: AuthCredentials): Promise<GetTokenResponse> => {
-  const res = await fetch('https://playground.tesonet.lt/v1/tokens', {
+  const res = await fetch(`${import.meta.env.VITE_API_HOST}/tokens`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

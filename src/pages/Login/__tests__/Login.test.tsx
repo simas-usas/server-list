@@ -64,7 +64,7 @@ describe('Login', () => {
     const button = screen.getByText('Sign in');
     fireEvent.click(button);
 
-    expect(mockFetch).toHaveBeenCalledWith('https://playground.tesonet.lt/v1/tokens', {
+    expect(mockFetch).toHaveBeenCalledWith('https://test.com/tokens', {
       body: '{"username":"tesotest","password":"password123"}',
       headers: {
         'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import { GetServersResponse } from '#types';
 
 export const fetchServers = async (): Promise<GetServersResponse> => {
   const token = localStorage.getItem('token');
-  const res = await fetch('https://playground.tesonet.lt/v1/servers', {
+  const res = await fetch(`${import.meta.env.VITE_API_HOST}/servers`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
