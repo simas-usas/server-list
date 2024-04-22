@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { getServersQuery } from '../../api/servers';
-import Table from '../../components/Table/Table';
+import { getServersQuery } from '#api/servers';
+import { Table } from '#components';
 
 const Servers = () => {
   const { data } = useSuspenseQuery(getServersQuery());

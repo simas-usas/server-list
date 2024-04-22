@@ -1,12 +1,10 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
-import Header from './Header';
-import { useAuthContext } from '../contexts/AuthContext';
-import Button from './Button';
-import { Logo } from '../assets';
-import Spinner from './Spinner';
+import { useAuthContext } from '#contexts/AuthContext';
+import { Button, Header, Spinner } from '#components';
+import { Logo } from '#assets';
 
-export const GlobalLayout = () => {
+const GlobalLayout = () => {
   const { pathname } = useLocation();
   const { clearToken } = useAuthContext();
 
@@ -30,3 +28,5 @@ export const GlobalLayout = () => {
     </div>
   );
 };
+
+export default GlobalLayout;

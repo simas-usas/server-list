@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useAuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '#contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
 import { twMerge } from 'tailwind-merge';
-import Spinner from '../../components/Spinner';
+import { Button, Spinner, Input } from '#components';
 
 const Login = () => {
   const [username, setUsername] = useState<string | null>(null);

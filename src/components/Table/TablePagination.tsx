@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { ArrowLeft, ArrowRight } from '../../assets';
+import { ArrowLeft, ArrowRight } from '#assets';
 
 interface Props {
   pagination: {

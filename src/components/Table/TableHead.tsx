@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { ArrowDown } from '../../assets';
+import { ArrowDown } from '#assets';
 
 interface Props {
   headers: string[];

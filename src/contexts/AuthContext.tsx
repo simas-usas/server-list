@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
-import { AuthCredentials } from '../types';
-import { fetchToken } from '../api/auth';
+import { AuthCredentials } from '#types';
+import { fetchToken } from '#api/auth';
 
 type AuthContext = {
   token?: string | null;

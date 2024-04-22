@@ -1,4 +1,4 @@
-import { GetServersResponse } from '../types';
+import { GetServersResponse } from '#types';
 
 export const fetchServers = async (): Promise<GetServersResponse> => {
   const token = localStorage.getItem('token');

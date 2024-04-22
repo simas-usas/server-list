@@ -1,4 +1,4 @@
-import { AuthCredentials, GetTokenResponse } from '../types';
+import { AuthCredentials, GetTokenResponse } from '#types';
 
 export const fetchToken = async ({ username, password }: AuthCredentials): Promise<GetTokenResponse> => {
   const res = await fetch('https://playground.tesonet.lt/v1/tokens', {

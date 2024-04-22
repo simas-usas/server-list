@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Login from '../Login';
-import { AuthProvider } from '../../../contexts/AuthContext';
+import { AuthProvider } from '#contexts/AuthContext';
 
 describe('Login', () => {
   afterEach(() => {

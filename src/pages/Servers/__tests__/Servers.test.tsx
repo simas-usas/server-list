@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import Servers from '../Servers';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Servers from '../Servers';
 
 vi.mock('@tanstack/react-query', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@tanstack/react-query')>()),
