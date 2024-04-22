@@ -66,7 +66,9 @@ const Login = () => {
         />
         {password === '' && <div className="text-red-500">Please enter a valid password.</div>}
       </div>
-      <Button onClick={onLoginClick}>Sign in</Button>
+      <Button onClick={onLoginClick} aria-label="sign in">
+        Sign in
+      </Button>
     </div>
   );
 };

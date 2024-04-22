@@ -19,6 +19,9 @@ const Table = ({ data }: Props) => {
 
   useEffect(() => {
     if (data && !tableData.length) {
+      if (data.length < pagination.count) {
+        setPagination((prev) => ({ ...prev, count: data.length }));
+      }
       setTableData(data);
     }
   }, [data]);

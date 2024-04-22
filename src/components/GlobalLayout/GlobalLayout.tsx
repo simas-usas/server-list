@@ -13,7 +13,7 @@ const GlobalLayout = () => {
       {pathname !== '/login' && (
         <Header>
           <Logo className="fill-secondary" />
-          <Button variant="secondary" onClick={() => clearToken()}>
+          <Button variant="secondary" onClick={() => clearToken()} aria-label="sign out">
             Sign out
           </Button>
         </Header>

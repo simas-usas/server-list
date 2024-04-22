@@ -20,11 +20,17 @@ const TablePagination = ({ pagination: { count, page }, rowsLength, onPageClick,
         onClick={() => onPageArrowClick(-count)}
         disabled={isFirstPage}
         className={twMerge(' p-1 bg-secondary rounded-full', isFirstPage && 'opacity-50')}
+        aria-label="previous page"
       >
         <ArrowLeft />
       </button>
       {Array.from(Array(rowsLength / count).keys()).map((item) => (
-        <button key={item} onClick={() => onPageClick(item)} className="p-1 bg-secondary rounded-full">
+        <button
+          key={item}
+          onClick={() => onPageClick(item)}
+          className="p-1 bg-secondary rounded-full"
+          aria-label={`page ${item + 1}`}
+        >
           <div className="w-6 h-6 font-bold">{item + 1}</div>
         </button>
       ))}
@@ -32,6 +38,7 @@ const TablePagination = ({ pagination: { count, page }, rowsLength, onPageClick,
         onClick={() => onPageArrowClick(count)}
         disabled={isLastPage}
         className={twMerge('p-1 bg-secondary rounded-full', isLastPage && 'opacity-50')}
+        aria-label="next page"
       >
         <ArrowRight />
       </button>

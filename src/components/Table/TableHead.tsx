@@ -18,6 +18,7 @@ const TableHead = ({ headers, sort, onSort }: Props) => (
           key={header}
           className="px-2 lg:px-4 py-2 bg-primary text-white border border-gray-300 capitalize cursor-pointer"
           onClick={() => onSort(header)}
+          aria-label={`${header} sort`}
         >
           <div className={twMerge('flex', index === headers.length - 1 && 'justify-end')}>
             {header}
