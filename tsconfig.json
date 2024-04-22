@@ -33,6 +33,7 @@
       "#api/*": ["./src/api/*"],
       "#contexts/*": ["./src/contexts/*"],
       "#assets/*": ["./src/assets/*"],
+      "#lib/*": ["./src/lib/*"],
       "#assets": ["./src/assets/index.ts"],
       "#types": ["./src/types.d.ts"],
     }

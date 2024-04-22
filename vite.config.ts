@@ -14,6 +14,7 @@ export default defineConfig({
       '#contexts': path.resolve(__dirname, './src/contexts/'),
       '#assets': path.resolve(__dirname, './src/assets/'),
       '#vite': path.resolve(__dirname, './src/vite.d.ts'),
+      '#lib': path.resolve(__dirname, './src/lib/'),
     },
   },
   test: {

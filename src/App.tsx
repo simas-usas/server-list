@@ -2,7 +2,7 @@ import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { router } from './router';
 import { AuthProvider } from '#contexts/AuthContext';
-import { queryClient } from './lib/query-client.ts';
+import { queryClient } from './lib/query-client';
 
 function App() {
   return (

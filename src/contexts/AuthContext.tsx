@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { AuthCredentials } from '#types';
 import { fetchToken } from '#api/auth';
+import { deleteAuthToken, getAuthToken } from '#lib/cookies';
 
 type AuthContext = {
   token?: string | null;
@@ -21,21 +22,21 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+  const [token, setToken] = useState<string | null>(getAuthToken());
   const [isLoading, setIsLoading] = useState(false);
 
   const getToken = async (props: AuthCredentials) => {
     setIsLoading(true);
 
     const data = await fetchToken(props);
-    localStorage.setItem('token', data.token);
+    document.cookie = `token=${data.token}`;
     setToken(data.token);
 
     setIsLoading(false);
   };
 
   const clearToken = async () => {
-    localStorage.removeItem('token');
+    deleteAuthToken();
     setToken(null);
   };
 
