@@ -18,7 +18,13 @@ const TableHead = ({ headers, sort, onSort }: Props) => (
           key={header}
           className="px-2 lg:px-4 py-2 bg-primary text-white border border-gray-300 capitalize cursor-pointer"
           onClick={() => onSort(header)}
+          onKeyDown={(e) => {
+            if (e.code === 'Space' || e.code === 'Enter') {
+              onSort(header);
+            }
+          }}
           aria-label={`${header} sort`}
+          tabIndex={0}
         >
           <div className={twMerge('flex', index === headers.length - 1 && 'justify-end')}>
             {header}
