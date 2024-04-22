@@ -42,7 +42,11 @@ const Table = ({ data }: Props) => {
     [tableData, sort],
   );
 
-  const onPageChange = (increment: number) => {
+  const onPageClick = (page: number) => {
+    setPagination((prev) => ({ ...prev, page: page * prev.count }));
+  };
+
+  const onPageArrowClick = (increment: number) => {
     setPagination((prev) => ({ ...prev, page: prev.page + increment }));
   };
 
@@ -53,7 +57,12 @@ const Table = ({ data }: Props) => {
           <TableHead headers={headers} sort={sort} onSort={onSort} />
           <TableBody rows={rows} pagination={pagination} headers={headers} />
         </table>
-        <TablePagination pagination={pagination} rowsLength={rows.length} onPageChange={onPageChange} />
+        <TablePagination
+          pagination={pagination}
+          rowsLength={rows.length}
+          onPageClick={onPageClick}
+          onPageArrowClick={onPageArrowClick}
+        />
       </div>
     )
   );

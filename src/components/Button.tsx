@@ -11,7 +11,7 @@ const classNames = {
 };
 
 const Button = ({ children, variant = 'primary', ...props }: Props) => (
-  <button className={`${classNames[variant]} py-2 px-4 rounded`} {...props}>
+  <button className={`${classNames[variant]} py-2 px-4 rounded font-bold`} {...props}>
     {children}
   </button>
 );
