@@ -6,7 +6,7 @@ Features two pages:
 * Login form
 * Table displaying list of servers.
 
-Launch the project locally using the following command:
+To launch the project, set up a local .env file with the necessary variables provided in the example. Locally run the following command:
 
 ```
 npm run dev
