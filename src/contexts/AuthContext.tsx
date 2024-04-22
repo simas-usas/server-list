@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import { AuthCredentials } from '#types';
 import { fetchToken } from '#api/auth';
 import { deleteAuthToken, getAuthToken } from '#lib/cookies';
+import { useMutation } from '@tanstack/react-query';
 
 type AuthContext = {
   token?: string | null;
@@ -24,15 +25,20 @@ export const useAuthContext = () => {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(getAuthToken());
   const [isLoading, setIsLoading] = useState(false);
+  const { mutateAsync } = useMutation({
+    mutationFn: fetchToken,
+    onMutate: () => {
+      setIsLoading(true);
+    },
+    onSuccess: (data) => {
+      document.cookie = `token=${data.token}`;
+      setToken(data.token);
+      setIsLoading(false);
+    },
+  });
 
   const getToken = async (props: AuthCredentials) => {
-    setIsLoading(true);
-
-    const data = await fetchToken(props);
-    document.cookie = `token=${data.token}`;
-    setToken(data.token);
-
-    setIsLoading(false);
+    await mutateAsync(props);
   };
 
   const clearToken = async () => {
