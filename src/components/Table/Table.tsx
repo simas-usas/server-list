@@ -53,7 +53,7 @@ const Table = ({ data }: Props) => {
   return (
     tableData && (
       <div>
-        <table className="bg-secondary mb-2">
+        <table className="bg-secondary mb-4">
           <TableHead headers={headers} sort={sort} onSort={onSort} />
           <TableBody rows={rows} pagination={pagination} headers={headers} />
         </table>
