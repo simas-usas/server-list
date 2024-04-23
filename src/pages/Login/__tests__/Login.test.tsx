@@ -1,7 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Login from '../Login';
 import { AuthProvider } from '#contexts/AuthContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('Login', () => {
   afterEach(() => {
@@ -43,16 +44,20 @@ describe('Login', () => {
     expect(screen.queryByText('Please enter a valid username.')).not.toBeInTheDocument();
   });
 
-  it('calls token endpoint', () => {
+  it('calls token endpoint', async () => {
+    const queryClient = new QueryClient();
+
     const mockFetch = vi.fn();
     global.fetch = mockFetch;
 
     render(
-      <AuthProvider>
-        <MemoryRouter>
-          <Login />
-        </MemoryRouter>
-      </AuthProvider>,
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <MemoryRouter>
+            <Login />
+          </MemoryRouter>
+        </AuthProvider>
+      </QueryClientProvider>,
     );
 
     const usernameInput = screen.getByPlaceholderText('Enter username here...');
@@ -64,12 +69,14 @@ describe('Login', () => {
     const button = screen.getByText('Sign in');
     fireEvent.click(button);
 
-    expect(mockFetch).toHaveBeenCalledWith('https://test.com/tokens', {
-      body: '{"username":"tesotest","password":"password123"}',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    });
+    await waitFor(() =>
+      expect(mockFetch).toHaveBeenCalledWith('https://test.com/tokens', {
+        body: '{"username":"tesotest","password":"password123"}',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }),
+    );
   });
 });
