@@ -5,6 +5,29 @@ import { AuthProvider } from '#contexts/AuthContext';
 import { Mock } from 'vitest';
 
 describe('App', () => {
+  it('renders Servers page when cookie is available', async () => {
+    const originalDocumentCookie = document.cookie;
+
+    Object.defineProperty(document, 'cookie', {
+      value: 'token=test;',
+      writable: true,
+    });
+
+    const queryClient = new QueryClient();
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => expect(screen.getByText('Sign out')).toBeInTheDocument());
+
+    document.cookie = originalDocumentCookie;
+  });
+
   it('renders Login page by default', () => {
     const queryClient = new QueryClient();
 

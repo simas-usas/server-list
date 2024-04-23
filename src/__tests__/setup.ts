@@ -7,4 +7,5 @@ vi.stubEnv('VITE_API_HOST', 'https://test.com');
 afterEach(() => {
   cleanup();
   vi.clearAllMocks();
+  vi.resetAllMocks();
 });
