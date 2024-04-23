@@ -49,4 +49,4 @@ npm run test
 
 * Add an option for the user to choose how many pages are displayed.
 * Add a page not found screen.
-* Refactor Table for further customisability. Would prefer the developer to configure headers manually.
+* Refactor Table for further customisability. Would prefer the developer to configure headers/rows manually.
