@@ -2,8 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import TableHead from './TableHead';
 import TableBody from './TableBody';
 import TablePagination from './TablePagination';
+import { isNumber, isString } from '#lib/utls';
 
 type TableData = { [key: string]: number | string }[];
+
+enum SortOrder {
+  ASC = 'asc',
+  DESC = 'desc',
+}
 
 interface Props {
   data?: TableData;
@@ -26,18 +32,26 @@ const Table = ({ data }: Props) => {
     }
   }, [data]);
 
+  const compareValues = <T extends string | number>(a: T, b: T): number => {
+    if (isString(a) && isString(b)) {
+      return a.localeCompare(b);
+    }
+    if (isNumber(a) && isNumber(b)) {
+      return a - b;
+    }
+    return 0;
+  };
+  
   const onSort = useCallback(
     (header: string) => {
-      const sortOrder = !sort.order || sort.order === 'desc' ? 'asc' : 'desc';
-      const sortedArray = tableData.sort((a, b) => {
-        let result;
-        if (typeof a[header] === 'string' && typeof b[header] === 'string') {
-          result = (a[header] as string).localeCompare(b[header] as string);
-        } else {
-          result = (a[header] as number) - (b[header] as number);
-        }
-        return sortOrder === 'asc' ? result : -result;
+      const sortOrder: SortOrder = !sort.order || sort.order === SortOrder.DESC ? SortOrder.ASC : SortOrder.DESC;
+  
+      const sortedArray = [...tableData].sort((a, b) => {
+        const aValue = a[header];
+        const bValue = b[header];
+        return sortOrder === SortOrder.ASC ? compareValues(aValue, bValue) : compareValues(bValue, aValue);
       });
+  
       setSort({ sortBy: header, order: sortOrder });
       setTableData(sortedArray);
       setPagination((prev) => ({ ...prev, page: 0 }));

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useAuthContext } from '#contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -12,7 +12,8 @@ const Login = () => {
   const { getToken, isPending } = useAuthContext();
   const navigate = useNavigate();
 
-  const onLoginClick = async () => {
+  const onLoginClick = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setError(false);
 
     if (!username) {
@@ -38,7 +39,7 @@ const Login = () => {
   if (isPending) return <Spinner />;
 
   return (
-    <div className="flex flex-col shrink w-96 m-4 p-4 bg-slate-50	rounded">
+    <form onSubmit={onLoginClick} className="flex flex-col shrink w-96 m-4 p-4 bg-slate-50	rounded">
       {error && <div className="text-red-500 text-center mb-2">Incorrect username or password – please try again.</div>}
       <div className="mb-2">
         <Input
@@ -66,10 +67,10 @@ const Login = () => {
         />
         {password === '' && <div className="text-red-500">Please enter a valid password.</div>}
       </div>
-      <Button onClick={onLoginClick} aria-label="sign in">
+      <Button type="submit" aria-label="sign in">
         Sign in
       </Button>
-    </div>
+    </form>
   );
 };
 

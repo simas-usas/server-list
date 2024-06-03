@@ -18,6 +18,12 @@ const AuthContext = createContext<AuthContext>({
   isPending: false,
 });
 
+const getExpiryDate = (): string => {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 1);
+  return expiryDate.toUTCString();
+};
+
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
@@ -27,8 +33,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: fetchToken,
     onSuccess: (data) => {
-      document.cookie = `token=${data.token}`;
-      setToken(data.token);
+      try {
+        const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `token=${
+          data.token
+        };${secureFlag}; HttpOnly; SameSite=Strict; expires=${getExpiryDate()}; path=/`;
+        setToken(data.token);
+      } catch (error) {
+        console.error('Error creating auth token cookie:', error);
+      }
     },
   });
 

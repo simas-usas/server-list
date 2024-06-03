@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -10,8 +11,8 @@ const classNames = {
   secondary: 'bg-secondary text-black',
 };
 
-const Button = ({ children, variant = 'primary', ...props }: Props) => (
-  <button className={`${classNames[variant]} py-2 px-4 rounded font-bold`} {...props}>
+const Button = ({ children, variant = 'primary', className, ...props }: Props) => (
+  <button className={twMerge(`${classNames[variant]} py-2 px-4 rounded font-bold`, className)} {...props}>
     {children}
   </button>
 );
