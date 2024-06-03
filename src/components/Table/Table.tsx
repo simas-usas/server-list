@@ -41,17 +41,17 @@ const Table = ({ data }: Props) => {
     }
     return 0;
   };
-  
+
   const onSort = useCallback(
     (header: string) => {
       const sortOrder: SortOrder = !sort.order || sort.order === SortOrder.DESC ? SortOrder.ASC : SortOrder.DESC;
-  
+
       const sortedArray = [...tableData].sort((a, b) => {
         const aValue = a[header];
         const bValue = b[header];
         return sortOrder === SortOrder.ASC ? compareValues(aValue, bValue) : compareValues(bValue, aValue);
       });
-  
+
       setSort({ sortBy: header, order: sortOrder });
       setTableData(sortedArray);
       setPagination((prev) => ({ ...prev, page: 0 }));

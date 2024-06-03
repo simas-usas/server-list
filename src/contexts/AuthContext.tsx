@@ -4,12 +4,12 @@ import { fetchToken } from '#api/auth';
 import { deleteAuthToken, getAuthToken } from '#lib/cookies';
 import { useMutation } from '@tanstack/react-query';
 
-type AuthContext = {
+interface AuthContext {
   token?: string | null;
   getToken: (props: AuthCredentials) => Promise<void> | undefined;
   clearToken: () => Promise<void> | undefined;
   isPending: boolean;
-};
+}
 
 const AuthContext = createContext<AuthContext>({
   token: 'test',
